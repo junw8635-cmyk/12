@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #050505;
+  --color-ink-primary: #ffffff;
+  --color-ink-secondary: a(color(white alpha(60%)));
+  --color-accent-orange: #FF5A1F;
+  --color-accent-purple: #B233FF;
+  --color-glass-bg: a(color(white alpha(3%)));
+  --color-glass-border: a(color(white alpha(10%)));
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-marquee-right: marquee-right 50s linear infinite;
+  --animate-marquee-left: marquee-left 50s linear infinite;
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.product-track {
+  --item-width: 320px;
+}
+@media (min-width: 768px) {
+  .product-track {
+    --item-width: 450px;
+  }
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-ink-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Atmospheric Gradients */
+.bg-ambient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--color-bg-base);
+}
+
+.bg-ambient::before, .bg-ambient::after {
+  content: '';
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  animation: float 20s infinite alternate;
+}
+
+.bg-ambient::before {
+  background: radial-gradient(circle at center, var(--color-accent-orange) 0%, transparent 60%);
+  top: -20vh;
+  left: -20vw;
+}
+
+.bg-ambient::after {
+  background: radial-gradient(circle at center, var(--color-accent-purple) 0%, transparent 60%);
+  bottom: -20vh;
+  right: -20vw;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(5%, 10%) scale(1.1);
+  }
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 24px;
+}
+
+.glass-nav {
+  background: a(color(black alpha(40%)));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--color-glass-border);
+}
+
+/* Subtle mask for content */
+.text-gradient {
+  background: linear-gradient(135deg, #FFF 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

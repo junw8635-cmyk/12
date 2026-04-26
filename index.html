@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark">
+    <title>JUN.W | Creative Director</title>
+    <script>
+      (function() {
+        try {
+          var desc = Object.getOwnPropertyDescriptor(window, 'fetch');
+          if (desc && !desc.set) {
+            var originalGet = desc.get;
+            Object.defineProperty(window, 'fetch', {
+              configurable: true,
+              get: function() { return originalGet ? originalGet.call(window) : undefined; },
+              set: function(val) { console.warn("Blocked attempt to overwrite window.fetch"); }
+            });
+          }
+        } catch (e) {
+          console.error("Failed to protect window.fetch:", e);
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-[#050505] text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
